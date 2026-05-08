@@ -1,0 +1,100 @@
+{
+  "name": "AI-powered Personal Finance Assistant",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "finance-query",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5c61be82-8e30-497c-add7-07949300331c",
+      "name": "Webhook",
+      "webhookId": "6334748a-cb79-4de3-aadd-b48220f9b2dc"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/chat",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user_id",
+              "value": "={{ $json.body.user_id }}"
+            },
+            {
+              "name": "query",
+              "value": "={{ $json.body.query }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "164a4a1e-a409-4cf2-96a4-8b9302398a42",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "d98ac357-ea2e-48bb-9bc1-b40d0e9ab365",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7ab6d02e-91f6-40e2-adc6-77c099023eff",
+  "meta": {
+    "instanceId": "eab1788763de6609aa8ee6eaf7e1f563140caa490fad3a5bd4b8931e959db5a7"
+  },
+  "id": "nyDA77ZM2cayG3At",
+  "tags": []
+}
