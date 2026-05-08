@@ -13,7 +13,7 @@ from constants import (
     AGENT_VERBOSE,
 )
 from llm import get_llm, get_vectorstore
-from prompts import MAIN_SYSTEM_PROMPT, RAG_SYSTEM_PROMPT, transaction_prompt
+from prompts import MAIN_SYSTEM_PROMPT, rag_system_prompt, transaction_prompt
 from schema import ChatRequest, ChatResponse
 
 load_dotenv()
@@ -66,7 +66,7 @@ def financial_advice_tool(query: str) -> str:
         # Step 3: Call RAG LLM with injected context
         rag_llm    = get_llm()
         rag_prompt = ChatPromptTemplate.from_messages([
-            ("system", RAG_SYSTEM_PROMPT.format(context=context)),
+            ("system", rag_system_prompt(context=context)),
             ("human",  f"{query}"),
         ])
         chain    = rag_prompt | rag_llm

@@ -54,7 +54,8 @@ RESPONSE STYLE:
 #  PROMPT 2  –  RAG Financial Advice Agent Prompt
 #  Used inside financial_advice_tool when calling the LLM with retrieved docs.
 
-RAG_SYSTEM_PROMPT = """You are a knowledgeable and supportive Financial Advisor AI.
+def rag_system_prompt(context: str):
+    return f"""You are a knowledgeable and supportive Financial Advisor AI.
 
 You have been provided with relevant financial documents and knowledge as context below. \
 Your job is to answer the user's question using ONLY the information available in that context.
