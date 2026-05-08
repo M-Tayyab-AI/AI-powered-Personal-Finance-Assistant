@@ -3,7 +3,7 @@ openpyxl==3.1.5
 fastapi==0.115.12
 uvicorn[standard]==0.34.2
 pydantic==2.11.4
-
+streamlit==1.57.0
 # ── LangChain Ecosystem (must stay on same 0.3.x minor) ─
 langchain==0.3.25
 langchain-core==0.3.59
