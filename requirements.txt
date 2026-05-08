@@ -1,0 +1,18 @@
+pandas==3.0.2
+openpyxl==3.1.5
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+pydantic==2.11.4
+
+# ── LangChain Ecosystem (must stay on same 0.3.x minor) ─
+langchain==0.3.25
+langchain-core==0.3.59
+langchain-community==0.3.24
+langchain-google-genai==2.1.4
+langchain-voyageai==0.3.3
+
+# ── Vector Store ─────────────────────────────────────
+faiss-cpu==1.10.0
+
+# ── Environment Variables ─────────────────────────────
+python-dotenv==1.1.0
